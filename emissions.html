@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>U.S. Greenhouse Gas Emissions</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link your CSS file here -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        .navbar {
+            background: linear-gradient(to right, #6dd5ed, #2193b0);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+        }
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .key-insights {
+            margin-top: 20px;
+        }
+        .key-insights ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr; /* Default to single column */
+            gap: 20px;
+        }
+        @media (min-width: 768px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr); /* Two columns on medium screens */
+            }
+        }
+        .num{
+            font-size:xx-large;
+            font-weight: bold;
+        }
+        footer {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #2193b0;
+            color: white;
+            text-align: center;
+        }
+        .margin{
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <header class="header">
+        <nav class="nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="emissions.html">Emissions Data</a></li>
+                <li><a href="impacts.html">Climate Impacts</a></li>
+                <li><a href="actions.html">Take Action</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <h1>U.S. Greenhouse Gas Emissions</h1>
+
+    <div class="card2">
+        <h2>U.S. Greenhouse Gas Emissions (1990-2020)</h2>
+        <canvas id="emissionsChart"></canvas>
+    </div>
+
+    <div class="grid">
+        <div class="card">
+            <h3>Total Emissions in 2020</h3>
+            <p class="num">5,981.4</p>
+            <p class="text-sm text-muted-foreground">Million Metric Tons of CO2 Equivalent</p>
+        </div>
+        <div class="card">
+            <h3>Change Since 1990</h3>
+            <p class="num red">-4.0%</p>
+            <p class="text-sm text-muted-foreground">Decrease in emissions from 1990 to 2020</p>
+        </div>
+    </div>
+
+    <h2 class="key-insights">Key Insights</h2>
+    <ul class="margin">
+        <li>Emissions peaked in 2007 and have generally decreased since then.</li>
+        <li>The decrease is largely due to shifts from coal to natural gas in electricity generation.</li>
+        <li>Increased use of renewable energy sources has also contributed to the reduction.</li>
+        <li>Despite the overall decrease, emissions are still significantly higher than 1990 levels.</li>
+    </ul>
+
+    <footer>
+        <p>&copy; 2024 Climate Change Insights. Data sourced from U.S. Greenhouse Gas Emissions and Sinks Report.</p>
+    </footer>
+
+    <script>
+        const ctx = document.getElementById('emissionsChart').getContext('2d');
+        const emissionsChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [1990, 1995, 2000, 2005, 2010, 2015, 2020],
+                datasets: [{
+                    label: 'Emissions (Million Metric Tons CO2 Equivalent)',
+                    data: [6233.2, 6571.0, 7231.9, 7339.0, 6985.5, 6792.9, 5981.4],
+                    borderColor: '#8884d8',
+                    fill: false,
+                    tension: 0.1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Emissions (Million Metric Tons)',
+                        },
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Year',
+                        },
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                    },
+                    tooltip: {
+                        mode: 'index',
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
